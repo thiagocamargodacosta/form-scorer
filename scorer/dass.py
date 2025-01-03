@@ -5,6 +5,8 @@ import pandas
 DASS_21_HEADERS = [
     "Carimbo de data/hora",
     "Endereço de e-mail",
+    "Nome Completo",
+    "Data de Nascimento",
     "1 - Achei difícil me acalmar",
     "2 - Senti minha boca seca",
     "3 -  Não consegui vivenciar nenhum sentimento positivo",
@@ -48,9 +50,9 @@ class Response:
 def DASS(form: List[str]) -> List[str]:
     date = form[0]
     email = form[1]
-    depression = [form[4], form[6], form[11], form[14], form[17], form[18], form[22]]
-    anxiety = [form[3], form[5], form[8], form[10], form[16], form[20], form[21]]
-    stress = [form[2], form[7], form[9], form[12], form[13], form[15], form[19]]
+    depression = [form[6], form[8], form[13], form[16], form[19], form[20], form[24]]
+    anxiety = [form[5], form[7], form[10], form[12], form[18], form[22], form[23]]
+    stress = [form[4], form[9], form[11], form[14], form[15], form[17], form[21]]
 
     score = [
         date,
