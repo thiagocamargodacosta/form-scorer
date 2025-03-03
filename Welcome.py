@@ -3,17 +3,6 @@ import pandas as pd
 from io import StringIO
 
 st.set_page_config(page_title="Form scorer - Welcome!", page_icon="👋")
-# Using tabs
-# SUPPORTED_FORMS = ["DASS-21", "PSQI-PT"]
-
-# # Create a tab for each form that is supported
-# dass_21, psqi_pt = st.tabs(SUPPORTED_FORMS)
-
-# with dass_21:
-#     st.header("Depression, Anxiety, and Stress Scale (DASS-21)")
-
-# with psqi_pt:
-#     st.header("Pittsburgh Sleep Quality Index (PSQI)")
 
 # Using pages
 st.markdown("# Welcome! 👋")
@@ -24,6 +13,8 @@ st.markdown(
 
     - DASS-21
     - PSQI-PT
+    - PANAS
+    - GPAQ
 
     After the scoring is done, you can download the result data and continue your data analysis process
     ### How to use
