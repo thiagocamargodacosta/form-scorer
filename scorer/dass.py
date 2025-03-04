@@ -4,7 +4,6 @@ import pandas
 # Declaring input table headers
 DASS_21_HEADERS = [
     "Carimbo de data/hora",
-    "Endereço de e-mail",
     "Nome Completo",
     "Data de Nascimento",
     "1 - Achei difícil me acalmar",
@@ -33,7 +32,7 @@ DASS_21_HEADERS = [
 # Declaring result table headers
 DASS_21_RESULT_HEADERS = [
     "Carimbo de data/hora",
-    "Endereço de e-mail",
+    "Nome Completo",
     "Classificação do sintoma - Depressão",
     "Classificação do sintoma - Ansiedade",
     "Classificação do sintoma - Estresse",
@@ -49,14 +48,14 @@ class Response:
 
 def DASS(form: List[str]) -> List[str]:
     date = form[0]
-    email = form[1]
-    depression = [form[6], form[8], form[13], form[16], form[19], form[20], form[24]]
-    anxiety = [form[5], form[7], form[10], form[12], form[18], form[22], form[23]]
-    stress = [form[4], form[9], form[11], form[14], form[15], form[17], form[21]]
+    name = form[1]
+    depression = [form[5], form[7], form[12], form[15], form[18], form[19], form[23]]
+    anxiety = [form[4], form[6], form[9], form[11], form[17], form[21], form[22]]
+    stress = [form[3], form[8], form[10], form[13], form[14], form[16], form[20]]
 
     score = [
         date,
-        email,
+        name,
         str(Depression(depression)),
         str(Anxiety(anxiety)),
         str(Stress(stress)),
@@ -77,7 +76,7 @@ def score(forms: List[List[str]]) -> pandas.core.frame.DataFrame:
     return df
 
 
-def ToScale(response: str) -> int:
+def to_scale(response: str) -> int:
     score = 0
 
     match response:
@@ -96,19 +95,19 @@ def ToScale(response: str) -> int:
 def Stress(responses: List[str]) -> int:
     score = 0
     for r in responses:
-        score += ToScale(r)
+        score += to_scale(r)
     return score * 2
 
 
 def Depression(responses: List[str]) -> int:
     score = 0
     for r in responses:
-        score += ToScale(r)
+        score += to_scale(r)
     return score * 2
 
 
 def Anxiety(responses: List[str]) -> int:
     score = 0
     for r in responses:
-        score += ToScale(r)
+        score += to_scale(r)
     return score * 2
