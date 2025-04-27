@@ -4,10 +4,11 @@ import pandas
 # Declaring input table headers
 PSQI_HEADERS = [
     "Carimbo de data/hora",
-    "Endereço de e-mail",
+    "Nome Completo",
+    "Data de Nascimento",
     "PSQI1 - Durante o último mês, quando você geralmente foi para a cama à noite? (responda só numeros com a hora cheia. Ex: 21; 22; 23; 01)",
     "PSQI2 -   Durante o último mês, quanto tempo (em minutos) você geralmente levou para dormir à noite? (responda somente um número. Ex: 20)",
-    "PSQI3 -   Durante o último mês, quando você geralmente levantou de manhã? (responda só números com a hora cheia. Ex: 05; 06; 07; 09)",
+    "PSQI3 -   Durante o último mês, quando você geralmente levantou de manhã? (responda só números com a hora cheia. Ex: 5; 6; 7; 9)",
     "PSQI4 -   Durante o último mês, quantas horas de sono você teve por noite?\nPode ser diferente do número de horas que você ficou na cama. (responda só números com a hora cheia. Ex: 3; 6; 7; 10)",
     "Durante o último mês, com que freqüência você teve dificuldade de dormir porque você... [PSQI5.1 - Não conseguiu adormecer em até 30 minutos]",
     "Durante o último mês, com que freqüência você teve dificuldade de dormir porque você... [PSQI5.2 - Acordou no meio da noite ou de manhã cedo]",
@@ -29,7 +30,7 @@ PSQI_HEADERS = [
 # Declaring output table headers
 PSQI_RESULT_HEADERS = [
     "Carimbo de data/hora",
-    "Endereço de e-mail",
+    "Nome Completo",
     "Componente 1 - Qualidade subjetiva do sono",
     "Componente 2 - Latência do sono",
     "Componente 3 - Duração do sono",
@@ -54,13 +55,12 @@ def score(forms: List[List[str]]) -> pandas.core.frame.DataFrame:
 
 def PSQI(form: List[str]) -> List[str]:
     date = form[0]
-    email = form[1]
-    C1 = form[17]
-    C2 = [form[3], form[6]]
-    C3 = form[5]
-    C4 = [str(form[5]), str(form[2]), str(form[4])]  # sleep efficiency (parsing time madness)
+    name = form[1]
+    C1 = form[18]
+    C2 = [form[4], form[7]]
+    C3 = form[6]
+    C4 = [str(form[6]), str(form[3]), str(form[5])]  # sleep efficiency (parsing time madness)
     C5 = [
-        form[7],
         form[8],
         form[9],
         form[10],
@@ -69,13 +69,14 @@ def PSQI(form: List[str]) -> List[str]:
         form[13],
         form[14],
         form[15],
+        form[16],
     ]
-    C6 = form[17]
-    C7 = [form[19], form[20]]
+    C6 = form[18]
+    C7 = [form[20], form[21]]
 
     score = [
         date,
-        email,
+        name,
         str(Component1(C1)),
         str(Component2(C2)),
         str(Component3(C3)),
@@ -214,7 +215,7 @@ def Component5(responses: List[str]) -> int:
         score = 0
     elif total < 10:
         score = 1
-    elif score <= 18:
+    elif total <= 18:
         score = 2
     else:
         score = 3
@@ -272,7 +273,7 @@ def Component7(responses: List[str]) -> int:
         score = 0
     elif total <= 2:
         score = 1
-    elif score <= 4:
+    elif total <= 4:
         score = 2
     else:
         score = 3
