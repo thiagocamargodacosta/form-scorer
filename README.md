@@ -8,4 +8,3 @@ It currently supports the following questionaires:
 - DASS-21
 - PSQI-PT
 - PANAS
-- GPAQ

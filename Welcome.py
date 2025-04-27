@@ -14,7 +14,6 @@ st.markdown(
     - DASS-21
     - PSQI-PT
     - PANAS
-    - GPAQ
 
     After the scoring is done, you can download the result data and continue your data analysis process
     ### How to use
